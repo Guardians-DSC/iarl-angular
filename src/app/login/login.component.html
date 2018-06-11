@@ -1,0 +1,66 @@
+<div style="background: url('assets/bg2.jpg');" class="main">
+
+    <div class="container" id="cardLogin">
+
+        <div class="middle">
+
+            <div id="login">
+
+                <form [formGroup]="_loginForm" (ngSubmit)="login()">
+
+                    <fieldset class="clearfix">
+                        <div>
+                            <span class="fa fa-user"></span>
+                            <input
+                              id="username"
+                              formControlName="username"
+                              type="text"
+                              Placeholder="Usuário"
+                            />
+                            <div class="alert"
+                            *ngIf="!_loginForm.controls['username'].valid &&
+                                    _loginForm.controls['username'].touched">
+                                   Nome do usuário não pode ser vazio
+                            </div>
+                        </div>
+
+                        <div>
+                            <span class="fa fa-lock"></span>
+                            <input
+                              id="password"
+                              formControlName="password"
+                              type="password"
+                              Placeholder="Senha"
+                            />
+                            <div class="alert"
+                            *ngIf="!_loginForm.controls['password'].valid &&
+                                    _loginForm.controls['password'].touched">
+                                   Senha não pode ter menos de 8 caracters
+                            </div>
+                        </div>
+
+                        <div>
+                            <span style="width:48%; text-align:left;  display: inline-block;"><a class="small-text" href="#">Esqueceu senha?</a></span>
+                            <span style="width:50%; text-align:right;  display: inline-block;">
+                                <input type="submit" value="Entrar">
+                            </span>
+                        </div>
+
+                    </fieldset>
+                    <div class="clearfix"></div>
+
+                </form>
+
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="logo">
+                <div class="clearfix">
+                    <img height="240px" width="400px" src="../../assets/Logo_3D_1.png" id="guardiansLogo">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>
