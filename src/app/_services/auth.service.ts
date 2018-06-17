@@ -5,14 +5,13 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 export class AuthService {
 
   private url = 'http://localhost:3000/api/login';
-  private TOKEN: string = 'token';
+  private TOKEN = 'token';
   constructor(private http: Http) { }
 
 
-  login(model: any) {
-    const body = JSON.stringify(model);
+  login(body: any) {
     return this.http.post(this.url , body);
-  };
+  }
 
   setSession(authData: any) {
     localStorage.setItem(this.TOKEN, JSON.stringify(authData['token']));
