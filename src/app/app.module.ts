@@ -17,6 +17,9 @@ import { AuthService } from './_services/auth.service';
 import { HttpModule } from '@angular/http';
 
 import { ToastrModule } from 'ngx-toastr';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatSidenavModule} from '@angular/material/sidenav';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +35,8 @@ import { ToastrModule } from 'ngx-toastr';
     HttpModule,
     ReactiveFormsModule,
     ToastrModule.forRoot(),
+    MatToolbarModule,
+    MatSidenavModule
   ],
   providers: [
     AuthGuard,
