@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class AuthService {
 
   private url = 'http://localhost:3000/api/login';
   private TOKEN = 'token';
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
 
   login(body: any) {
@@ -14,11 +14,11 @@ export class AuthService {
   }
 
   setSession(authData: any) {
-    localStorage.setItem(this.TOKEN, JSON.stringify(authData['token']));
+    localStorage.setItem(this.TOKEN, authData['token']);
   }
 
   getToken() {
-    return JSON.parse(localStorage.getItem(this.TOKEN));
+    return localStorage.getItem(this.TOKEN);
   }
 
   revokeSession() {

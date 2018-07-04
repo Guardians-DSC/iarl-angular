@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-
 // Project imports
 import { AppRoutingModule } from './/app-routing.module';
 import { DeskboardComponent } from './deskboard/deskboard.component';
@@ -14,22 +13,24 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AuthService } from './_services/auth.service';
-import { HttpModule } from '@angular/http';
 
 import { ToastrModule } from 'ngx-toastr';
+import { FileManagerComponent } from './file-manager/file-manager.component';
+import {HttpClientModule} from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     FooterComponent,
-    DeskboardComponent
+    DeskboardComponent,
+    FileManagerComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    HttpModule,
+    HttpClientModule,
     ReactiveFormsModule,
     ToastrModule.forRoot(),
   ],
