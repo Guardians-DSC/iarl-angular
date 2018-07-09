@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {AuthService} from './_services/auth.service';
+import {AuthService} from './auth.service';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Injectable({
@@ -14,12 +14,13 @@ export class DataService {
   }
 
   getFiles() {
-    const token: string = this.authService.getToken();
-    const headers = new HttpHeaders();
-    headers.append('Authorization', token); // TODO para continuar depois
-    return this.http.get(this.url, {headers});
-
-    // return this.http.get(this.url);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': this.authService.getToken()
+      })
+    };
+    console.log(httpOptions);
+    return this.http.get(this.url, httpOptions);
   }
 
   /*

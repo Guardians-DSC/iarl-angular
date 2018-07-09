@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {DataService} from '../data.service';
+import {DataService} from '../_services/data.service';
 import {computeStyle} from '@angular/animations/browser/src/util';
+import {Router} from '@angular/router';
+import {interpolate} from '@angular/core/src/view';
 
 @Component({
   selector: 'app-file-manager',
@@ -8,14 +10,23 @@ import {computeStyle} from '@angular/animations/browser/src/util';
   styleUrls: ['./file-manager.component.css']
 })
 export class FileManagerComponent implements OnInit {
-  msg: string
-  constructor(private dataService: DataService) { }
+  msg: string;
+  objs: any;
+  constructor(private dataService: DataService,
+              private router: Router) { }
 
   ngOnInit() {
-    console.log('iniciou');
     this.dataService.getFiles().subscribe( res => {
-      console.log(res);
+      this.objs = res;
+    }, error2 => {
+      this.router.navigateByUrl('/login');
     });
   }
 
+
+  /*exibirArquivos() {
+    console.log('show');
+
+  }*/
 }
+// this.msg = JSON.stringify(res);

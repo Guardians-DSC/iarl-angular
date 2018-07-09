@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class AuthService {
@@ -13,12 +13,12 @@ export class AuthService {
     return this.http.post(this.url , body);
   }
 
-  setSession(authData: any) {
-    localStorage.setItem(this.TOKEN, authData['token']);
+  setSession(token: any) {
+    localStorage.setItem(this.TOKEN, JSON.stringify(token));
   }
 
   getToken() {
-    return localStorage.getItem(this.TOKEN);
+    return JSON.parse(localStorage.getItem(this.TOKEN));
   }
 
   revokeSession() {
