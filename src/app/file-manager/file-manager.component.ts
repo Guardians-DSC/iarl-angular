@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {DataService} from '../_services/data.service';
-import {computeStyle} from '@angular/animations/browser/src/util';
-import {Router} from '@angular/router';
-import {interpolate} from '@angular/core/src/view';
+import { DataService } from '../_services/data.service';
+import { Router } from '@angular/router';
+import File from '../_models/file.module';
 
 @Component({
   selector: 'app-file-manager',
@@ -10,23 +9,55 @@ import {interpolate} from '@angular/core/src/view';
   styleUrls: ['./file-manager.component.css']
 })
 export class FileManagerComponent implements OnInit {
-  msg: string;
-  objs: any;
+  files: File[];
+  regex = /^\.[\w\W]{2,}$/;
+
   constructor(private dataService: DataService,
               private router: Router) { }
 
   ngOnInit() {
-    this.dataService.getFiles().subscribe( res => {
-      this.objs = res;
+    this.getFiles('');
+  }
+
+
+  private getFiles(path: string) {
+    this.dataService.getFiles(path).subscribe(res => {
+      this.files = res['items'];
+      this.order();
     }, error2 => {
       this.router.navigateByUrl('/login');
     });
   }
 
+  order() {
+    this.files.sort(function (file1, file2) {
+      if (file1.isFile && !file2.isFile) {
+        return 1;
 
-  /*exibirArquivos() {
-    console.log('show');
+      } else if (!file1.isFile && file2.isFile) {
+        return -1;
 
-  }*/
+      } else {
+        return 0;
+      }
+    });
+
+  }
+
+  showFile(file: File) {
+    if (!file.isFile) {
+      console.log(file.path);
+      this.getFiles(file.path);
+    } else {
+      console.log(file);
+    }
+  }
+
+  comeBack() {
+    // To implemented
+  }
+
+  Valid(file: File) {
+    return !this.regex.test(file.name);
+  }
 }
-// this.msg = JSON.stringify(res);

@@ -16,7 +16,7 @@ import { AuthService } from './_services/auth.service';
 
 import { ToastrModule } from 'ngx-toastr';
 import { FileManagerComponent } from './file-manager/file-manager.component';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,

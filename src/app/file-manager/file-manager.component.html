@@ -1,4 +1,10 @@
-{{ msg }}
 <!--
-<button (click)="exibirArquivos()">CLICK</button>
+<button>VOLTAR</button>
 -->
+<div>
+  <div *ngFor="let file of files" (click)="showFile(file)">
+    <div *ngIf="Valid(file)">
+      {{ file.name }}
+    </div>
+  </div>
+</div>
