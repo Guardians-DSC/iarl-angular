@@ -7,43 +7,38 @@
             <div id="login">
 
                 <form [formGroup]="_loginForm" (ngSubmit)="login()">
+                  <mat-form-field [floatLabel]="auto">
+                    <input
+                      matInput
+                      placeholder="Usuário"
+                      id="username"
+                      formControlName="username">
+                    <mat-hint>Seu nome de usuário dos LCC's</mat-hint>
+                    <mat-error *ngIf="!_loginForm.controls['username'].valid &&
+                            _loginForm.controls['username'].touched">
+                      Nome do usuário não pode ser vazio
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field >
+                    <!-- <span class="fa fa-lock"></span> -->
+                    <input
+                      matInput
+                      id="password"
+                      formControlName="password"
+                      placeholder="Senha"
+                      type="password"
+                    />
+                    <mat-error *ngIf="!_loginForm.controls['password'].valid &&
+                            _loginForm.controls['password'].touched">
+                      Senha não pode ter menos de 8 caracters
+                    </mat-error>
+                  </mat-form-field>
+                  <button type="submit" mat-button>Entrar</button>
 
                     <fieldset class="clearfix">
-                        <div>
-                            <span class="fa fa-user"></span>
-                            <input
-                              id="username"
-                              formControlName="username"
-                              type="text"
-                              Placeholder="Usuário"
-                            />
-                            <div class="alert"
-                            *ngIf="!_loginForm.controls['username'].valid &&
-                                    _loginForm.controls['username'].touched">
-                                   Nome do usuário não pode ser vazio
-                            </div>
-                        </div>
-
-                        <div>
-                            <span class="fa fa-lock"></span>
-                            <input
-                              id="password"
-                              formControlName="password"
-                              type="password"
-                              Placeholder="Senha"
-                            />
-                            <div class="alert"
-                            *ngIf="!_loginForm.controls['password'].valid &&
-                                    _loginForm.controls['password'].touched">
-                                   Senha não pode ter menos de 8 caracters
-                            </div>
-                        </div>
 
                         <div>
                             <span style="width:48%; text-align:left;  display: inline-block;"><a class="small-text" href="#">Esqueceu senha?</a></span>
-                            <span style="width:50%; text-align:right;  display: inline-block;">
-                                <input type="submit" value="Entrar">
-                            </span>
                         </div>
 
                     </fieldset>
