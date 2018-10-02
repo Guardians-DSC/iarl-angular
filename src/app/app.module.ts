@@ -17,9 +17,12 @@ import { AuthService } from './_services/auth.service';
 import { HttpModule } from '@angular/http';
 
 import { ToastrModule } from 'ngx-toastr';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatSidenavModule} from '@angular/material/sidenav';
-
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +39,11 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     ReactiveFormsModule,
     ToastrModule.forRoot(),
     MatToolbarModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatSnackBarModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule
   ],
   providers: [
     AuthGuard,
