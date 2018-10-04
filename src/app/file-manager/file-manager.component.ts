@@ -10,8 +10,9 @@ import File from '../_models/file.module';
 })
 export class FileManagerComponent implements OnInit {
   files: File[];
+  lastName: string;
   regex = /^\.[\w\W]{2,}$/;
-
+  path: string;
   constructor(private dataService: DataService,
               private router: Router) { }
 
@@ -23,6 +24,7 @@ export class FileManagerComponent implements OnInit {
   private getFiles(path: string) {
     this.dataService.getFiles(path).subscribe(res => {
       this.files = res['items'];
+      this.path = res['path'];
       this.order();
     }, error2 => {
       this.router.navigateByUrl('/login');
@@ -45,19 +47,39 @@ export class FileManagerComponent implements OnInit {
   }
 
   showFile(file: File) {
+    console.log(file.name)
+    console.log(file.isFile)
+    console.log(file.path)
+
+    console.log(file)
     if (!file.isFile) {
-      console.log(file.path);
-      this.getFiles(file.path);
+      if (this.path != "") {
+        this.getFiles(this.path + "/" + file.name);
+        this.lastName = file.name;
+      } else {
+        this.getFiles(file.name);
+      }
+      
     } else {
       console.log(file);
     }
   }
 
   comeBack() {
-    // To implemented
+    if (this.path != "") {
+      const path = this.getLastPath();
+      this.path = "";
+      this.getFiles(path);
+    }
   }
 
   Valid(file: File) {
     return !this.regex.test(file.name);
+  }
+
+
+  getLastPath() {
+    const index = this.path.indexOf(this.lastName);
+    return this.path.substring(0, index != -1 ? index : this.path.length);
   }
 }

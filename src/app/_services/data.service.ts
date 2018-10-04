@@ -20,6 +20,8 @@ export class DataService {
       })
     };
 
+    console.log()
+    console.log(this.url + path)
     return this.http.get(this.url + path, httpOptions);
   }
 

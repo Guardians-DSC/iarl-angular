@@ -1,6 +1,6 @@
-<!--
-<button>VOLTAR</button>
--->
+
+<button (click)="comeBack()">VOLTAR</button>
+
 <div>
   <div *ngFor="let file of files" (click)="showFile(file)">
     <div *ngIf="Valid(file)">
