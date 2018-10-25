@@ -9,58 +9,61 @@ import {MatSnackBar} from '@angular/material';
 
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.css"]
 })
 export class LoginComponent implements OnInit {
-
-  private _model: any = {};
+  private _model: { username: string; password: string } = { username: '', password: '' };
   private _loginForm: FormGroup;
-  constructor(private _vRef: ViewContainerRef,
-              private _auth: AuthService,
-              private _fb: FormBuilder,
-              private _router: Router,
-              private _toastr: ToastrService,
-              private _snackBar: MatSnackBar,
-    ) {
+  constructor(
+    private _vRef: ViewContainerRef,
+    private _auth: AuthService,
+    private _fb: FormBuilder,
+    private _router: Router,
+    private _toastr: ToastrService,
+    private _snackBar: MatSnackBar
+  ) {
     this.createForm();
   }
 
   openSnackBar(message) {
     this._snackBar.open(message, null, {
-      duration: 1000,
+      duration: 1000
     });
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   createForm() {
     this._loginForm = this._fb.group({
       username: [null, [Validators.required]],
-      password: [null, [Validators.required, Validators.minLength(8)]],
+      password: [null, [Validators.required, Validators.minLength(8)]]
     });
   }
 
   login() {
+    
     if (!this._loginForm.valid) {
-      // this._toastr.warning('Usuário ou senha inválido!', 'Alerta!');
-      this.openSnackBar('Usuário ou senha inválido!');
+      this.openSnackBar("Usuário ou senha inválido!");
     } else {
-      this._model = this._loginForm.value;
-      this._auth.login(this._model).subscribe(res => {
-        const token = res.json();
-        if (token) {
-          this._auth.setSession(token);
-          this.openSnackBar('Login realizado com suceso'); // TODO: não tem sentido ter esse comentário aqui
-          // this.router.navigate(['deskboard']);
-        }
-      }, err => {
-        console.log(err);
-        this.openSnackBar('Ocorreu um erro ao Logar!');
-      });
-    }
 
+      this._model = this._loginForm.value;
+
+      this._auth.login(this._model).subscribe(
+        res => {
+          const token = res.json();
+          if (token) {
+            this._auth.setSession(token);
+            this.openSnackBar("Login realizado com suceso"); 
+            this._router.navigate(['deskboard']);
+          }
+        },
+        err => {
+          console.log(err);
+          this.openSnackBar("Ocorreu um erro ao Logar!");
+        }
+      );
+    }
   }
 }

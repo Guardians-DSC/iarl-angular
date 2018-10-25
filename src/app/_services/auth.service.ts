@@ -1,27 +1,32 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import { API_URL, AUTH_ENDPOINT } from '../_constants/constants';
 
 @Injectable()
 export class AuthService {
 
-  private url = 'http://localhost:3000/api/login';
+  private url = `${API_URL}${AUTH_ENDPOINT}`;
   private TOKEN = 'token';
   constructor(private http: Http) { }
 
 
-  login(body: any) {
-    return this.http.post(this.url , body);
+  public login(body: any) {
+    // console.log(this.url);
+    const headers: Headers = new Headers();
+    headers.append('Access-Control-Allow-Origin', '*');
+
+    return this.http.post(this.url , body, { headers });
   }
 
-  setSession(authData: any) {
+  public setSession(authData: any) {
     localStorage.setItem(this.TOKEN, JSON.stringify(authData['token']));
   }
 
-  getToken() {
+  public getToken() {
     return JSON.parse(localStorage.getItem(this.TOKEN));
   }
 
-  revokeSession() {
+  public revokeSession() {
     localStorage.removeItem(this.TOKEN);
   }
 }

@@ -1,19 +1,44 @@
-<mat-sidenav-container class="app-container">
-  <mat-sidenav mode="side" opened>
-    <p>
-      Logado com sucesso!
-    </p>
-    <button type="submit">LogOut</button>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar>
-      <mat-toolbar-row>
-        <span style="font-family: 'Skranji', cursive">IARL!</span>
-      </mat-toolbar-row>
-    </mat-toolbar>
-    <div class="container-fluid p-3">
-      <!-- <file-manager></file-manager>       -->
-    </div>
-  </mat-sidenav-content>
-  k
-</mat-sidenav-container>
+<div>
+  <mat-toolbar>
+    <mat-toolbar-row class="iarl-toolbar">
+      <span (click)="toggleSidenav()" style="font-family: 'Skranji', cursive; color: rgba(0,0,0,0.7)">IARL!</span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-sidenav-container class="app-container">
+    <mat-sidenav class="iarl-sidenav" mode="side" opened="{{sidenavOpened}}">
+      <mat-selection-list class="sidebar" role="list">
+        <mat-list-item *ngFor="let server of servers" role="listitem">
+          <button (click)="goToLCC(server.name)" mat-button>
+            {{server.name}}
+          </button>
+        </mat-list-item>
+        <mat-list-item class="sidebar-item-last" role="listitem">
+          <button (click)="logout()" mat-button>
+            Sair
+          </button>
+        </mat-list-item>
+      </mat-selection-list>
+
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div class="container-fluid p-3">
+        <mat-grid-list *ngFor="let server of servers" cols="3" rowHeight="3:1">
+          <mat-grid-tile>
+            <mat-card class="lcc-card">
+              <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>{{server.name}}</mat-card-title>
+                <mat-card-subtitle>{{server.host}}</mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-actions>
+                <button (click)="goToLCC(server.name)" mat-button>ACESSAR</button>
+              </mat-card-actions>
+            </mat-card>
+          </mat-grid-tile>
+        </mat-grid-list>
+
+      </div>
+    </mat-sidenav-content>
+    k
+  </mat-sidenav-container>
+</div>

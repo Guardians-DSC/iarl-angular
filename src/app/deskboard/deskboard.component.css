@@ -5,6 +5,34 @@
     position: absolute;
     right: 0;
     left: 0;
-    top: 0;
+    top: 64px;
     bottom: 0;
+    z-index: -1;
+}
+
+.iarl-toolbar {
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.7);
+    z-index: 10;
+}
+
+.lcc-card {
+    width: 300px;
+}
+
+.iarl-sidenav {
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.7);
+}
+
+.toggle-sidenav {
+    border-radius: 100%;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+}
+
+.sidebar-item-last {
+    margin-top: auto;
 }
