@@ -5,9 +5,15 @@ import { DeskboardComponent } from './deskboard/deskboard.component';
 import { AuthGuard } from './_guards/auth.guard';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'deskboard', component: DeskboardComponent, canActivate: [ AuthGuard ] },
-  { path: '', pathMatch: 'full', redirectTo: '/login' }
+  { path: "login", component: LoginComponent },
+  { path: "lcc1", component: DeskboardComponent },
+  { path: "lcc2", component: DeskboardComponent },
+  {
+    path: "deskboard",
+    component: DeskboardComponent,
+    canActivate: [AuthGuard]
+  },
+  { path: "", pathMatch: "full", redirectTo: "/login" }
 ];
 
 @NgModule({
