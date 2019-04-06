@@ -150,10 +150,10 @@ footer{
 
 .footer-distributed .footer-right a{
   display: inline-block;
-  width: 35px;
+  /*width: 35px;
   height: 35px;
   background-color:  #33383b;
-  border-radius: 2px;
+  border-radius: 2px;*/
 
  font-size: 20px;
   color: #ffffff;
